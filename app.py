@@ -6,7 +6,7 @@ from faqlib import (
     build_search_engines, search_faqs, get_default_synonyms
 )
 from flowcharts import current_account_flow
-
+#no changes
 def get_available_faq_files():
     """Get available FAQ files from faqs folder"""
     faq_folder = "faqs"
