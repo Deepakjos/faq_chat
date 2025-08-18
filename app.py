@@ -11,6 +11,14 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
 
+
+@st.cache_resource #cache model
+def load_model():
+    
+    model = SentenceTransformer("all-MiniLM-L6-v2", device = "cpu")
+    return model
+model = load_model()
+  
 # ---------------------- Utilities ----------------------
 
 def clean_text_encoding(text):
