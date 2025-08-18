@@ -28,7 +28,7 @@ def faq_search_tab():
     
     # Sidebar configuration
     st.sidebar.title("⚙️ Configuration")
-    top_k = st.sidebar.slider("Results per algorithm", 1, 10, 5)
+    top_k = st.sidebar.slider("Results per algorithm", 1, 10, 3)
     threshold = st.sidebar.slider("Minimum score threshold", 0.0, 1.0, 0.1, 0.05)
     
     # File upload/selection
@@ -148,3 +148,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
