@@ -8,18 +8,40 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
 import streamlit as st
-import time
 
 # ========== CACHED RESOURCES ==========
+import torch
+from transformers import AutoModel, AutoTokenizer
+
 @st.cache_resource
 def load_model(model_name="all-MiniLM-L6-v2"):
-    """Load and cache the sentence transformer model with CPU device and warm-up"""
+    """Load and cache the sentence transformer model without device specification"""
+    with st.spinner("Loading and warming up model..."):
+        # Load without device specification to avoid meta tensor issues
+        model = SentenceTransformer(model_name)
+        
+        # Warm-up call to prevent meta tensor errors
+        try:
+            model.encode(["This is a test sentence for warmup."], show_progress_bar=False)
+        except Exception:
+            # If warm-up fails, still return the model
+            pass
+    
+    return model
+
+
+
+"""
+
+@st.cache_resource
+def load_model(model_name="all-MiniLM-L6-v2"):
+    "Load and cache the sentence transformer model with CPU device and warm-up"
     with st.spinner("Loading and warming up model..."):
         model = SentenceTransformer(model_name, device="cpu")
         # Warm-up call to prevent meta tensor errors
         model.encode(["This is a test sentence for warmup."], show_progress_bar=False)
     return model
-
+"""
 @st.cache_resource
 def get_nltk_resources():
     """Load and cache NLTK resources"""
