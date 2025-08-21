@@ -33,7 +33,7 @@ def faq_search_tab():
     
     # File upload/selection
     faq_files, faq_names = get_available_faq_files()
-    chosen = st.selectbox("Choose an inbuilt FAQ file", ["(None / Use uploaded)"] + faq_names)
+    chosen = st.selectbox("Choose an inbuilt FAQ file", [faq_names + "(None / Use uploaded)"])
     uploaded = st.file_uploader("Or upload your own FAQ CSV", type=["csv"], 
                               help="CSV must contain 'question' and 'answer' columns.")
     
@@ -148,4 +148,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
