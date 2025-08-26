@@ -69,7 +69,7 @@ def faq_search_tab():
     
     st.success(f"Loaded {len(df)} FAQ entries. {source_info}")
     
-    with st.expander("Preview (first 5 rows)"):
+    with st.expander("Preview (first few rows)"):
         st.dataframe(df.head(20))
     
     # Build search engines
@@ -148,6 +148,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
